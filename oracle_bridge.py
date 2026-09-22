@@ -1,8 +1,3 @@
----
-
-### 2. `oracle_bridge.py`
-
-```python
 """
 OracleGuard-Core — Multi-Source Price Oracle (Python 3.12)
 
