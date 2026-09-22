@@ -3,15 +3,12 @@
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![AsyncIO](https://img.shields.io/badge/AsyncIO-Native-brightgreen?style=for-the-badge)
 ![Pytest](https://img.shields.io/badge/Pytest-8.x-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
-![Integrity](https://img.shields.io/badge/Data%20Integrity-Fail--Closed-red?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
 **Independent multi-source price oracle** that continuously cross-checks institutional and exchange feeds.  
 Any statistically significant divergence is treated as potential quote manipulation or a flash-crash artefact and immediately triggers a system-wide halt.
 
 Built for quantitative and fintech platforms that cannot afford to trade on a single broker’s potentially skewed quotes.
-
-> Live API credentials and production feed endpoints remain private.  
-> This repository is an architectural showcase of data-integrity patterns for elite infrastructure and pipeline roles.
 
 ---
 
@@ -67,7 +64,6 @@ OracleGuard-Core/
 ├── README.md
 ├── oracle_bridge.py      # Async multi-feed oracle
 └── test_oracle.py        # Manipulation-attack test suite
-Attribution
-Architected by an Infrastructure & Data Integrity Architect.
-This repository demonstrates production-grade anti-manipulation oracle patterns for fintech and quantitative systems.
-Protected under proprietary guidelines. All rights reserved.
+## 👨‍💻 Author & Engineering Pedigree
+Architected and authored by Usman Abayomi Bamidele ([@amazing200guy1-a11y](https://github.com/amazing200guy1-a11y)).
+License: MIT Open Source.
