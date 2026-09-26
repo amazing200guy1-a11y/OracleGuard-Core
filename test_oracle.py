@@ -127,3 +127,20 @@ async def test_threshold_boundary() -> None:
 
         assert result.is_valid is True
         assert result.max_deviation < 0.001
+
+
+def test_detect_outliers_tukey() -> None:
+    """Detects spikes and flash crash anomalies using Tukey's fences."""
+    clean_and_spike = [100.0, 100.2, 100.1, 100.3, 100.05, 145.0]
+    outliers = OracleBridge.detect_outliers_tukey(clean_and_spike)
+    assert len(outliers) == 1
+    assert outliers[0] == 145.0
+
+
+def test_compute_hampel_median() -> None:
+    """Computes median price robust against extreme corrupted feeds."""
+    assert OracleBridge.compute_hampel_median([1.0, 5.0, 2.0]) == 2.0
+    corrupted = [1.0850, 1.0851, 1.0852, 999.999]
+    median = OracleBridge.compute_hampel_median(corrupted)
+    assert 1.0850 < median < 1.0855
+

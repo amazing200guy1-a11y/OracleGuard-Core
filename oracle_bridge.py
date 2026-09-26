@@ -138,6 +138,30 @@ class OracleBridge:
                     max_dev = dev
         return max_dev
 
+    @staticmethod
+    def detect_outliers_tukey(prices: Sequence[float], k: float = 1.5) -> List[float]:
+        """Identifies statistical outlier prices using Tukey's IQR fences."""
+        if len(prices) < 4:
+            return []
+        sorted_p = sorted(prices)
+        n = len(sorted_p)
+        q1 = sorted_p[n // 4]
+        q3 = sorted_p[(3 * n) // 4]
+        iqr = q3 - q1
+        lower = q1 - (k * iqr)
+        upper = q3 + (k * iqr)
+        return [p for p in prices if p < lower or p > upper]
+
+    @staticmethod
+    def compute_hampel_median(prices: Sequence[float]) -> float:
+        """Computes median price robust against up to 50% arbitrary corruption."""
+        if not prices:
+            return 0.0
+        sorted_p = sorted(prices)
+        n = len(sorted_p)
+        mid = n // 2
+        return sorted_p[mid] if n % 2 != 0 else (sorted_p[mid - 1] + sorted_p[mid]) / 2.0
+
     async def evaluate(self) -> OracleResult:
         """
         Concurrently fetch all feeds, compute deviation, and validate.
